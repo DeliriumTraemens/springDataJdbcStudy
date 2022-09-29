@@ -61,25 +61,25 @@ public class DogService {
 
     private void level2() {
 
-        String ownerName  = String.format("Вася:%d", System.currentTimeMillis());
-        Owner owner = new Owner(ownerName, "Васильки", Collections.emptySet(), true);
+        String ownerName  = String.format("Мэт:%d", System.currentTimeMillis());
+        Owner owner = new Owner(ownerName, "Там", Collections.emptySet(), true);
         ownerRepository.save(owner);
 
         Owner selectedOwner  = ownerRepository.findById(ownerName)
                 .orElseThrow(() -> new RuntimeException("selected owner not found, name: " + ownerName));
-        log.info("selectedOwner:{}", selectedOwner);
+        log.info("log_selectedOwner:{}", selectedOwner);
 
         Owner ownerReal = new Owner(ownerName, "London",
                 Set.of(new Dog("Бобик", null),
-                        new Dog("Wolf")),false);
+                        new Dog("Марсель")),false);
         ownerRepository.save(ownerReal);
 
         Owner selectedOwnerReal = ownerRepository.findById(ownerName)
                 .orElseThrow(() -> new RuntimeException("owner not found, name: " + ownerName));
-        log.info("selectedOwnerReal:{}", selectedOwnerReal);
-        log.info("selectedOwnerReal, dogs:{}", selectedOwnerReal.getDogs());
+        log.info("log_selectedOwnerReal:{}", selectedOwnerReal);
+        log.info("log_selectedOwnerReal, dogs:{}", selectedOwnerReal.getDogs());
 
-        ownerRepository.updateAddress(ownerName, "новый адрес");
+        ownerRepository.updateAddress(ownerName, "Еще адрес");
         Owner selectedOwnerRealAddress = ownerRepository.findById(ownerName)
                 .orElseThrow(() -> new RuntimeException("owner not found, name: " + ownerName));
         log.info("selectedOwnerRealAddress:{}", selectedOwnerRealAddress);
